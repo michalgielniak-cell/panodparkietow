@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pan od Parkietów – policz swoją podłogę</title>
+<meta name="description" content="Wstępny kosztorys podłogi drewnianej Jawor-Parkiet w 2 minuty. Materiał, montaż, klej, zapas i VAT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%232d4a3a%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23f4eee4%22 font-family=%22Georgia%22%3EP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a href="#top" class="brand" aria-label="Pan od Parkietów – strona główna">
+      <span class="brand__name">Pan od Parkietów</span>
+      <span class="brand__sub">Piotr Wałkowski · Jawor-Parkiet</span>
+    </a>
+    <nav class="topnav" aria-label="Nawigacja">
+      <a href="#jak">Jak to działa</a>
+      <a href="#realizacje">Realizacje</a>
+      <a href="#salony">Salony</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#kalkulator" class="btn btn--sm">Policz podłogę</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">Wstępny kosztorys w 2 minuty</p>
+      <h1>Policz swoją podłogę. <em>Z montażem, klejem i zapasem</em> – bez niespodzianek.</h1>
+      <p class="lead">Jestem Piotr, od ponad 20 lat zajmuję się podłogami drewnianymi i prowadzę trzy salony firmowe Jawor-Parkiet. Wybierz układ, drewno i kolor – a ja przygotuję dla Ciebie uczciwy kosztorys.</p>
+      <div class="hero__cta">
+        <a href="#kalkulator" class="btn">Policz swoją podłogę</a>
+        <a href="https://www.instagram.com/pan_od_parkietow/" target="_blank" rel="noopener" class="btn btn--ghost">Zobacz mój Instagram</a>
+      </div>
+      <p class="micro">Bezpłatnie · ok. 2 minuty · bez zobowiązań</p>
+    </div>
+    <figure class="hero__media">
+      <img src="img/hero.jpg" alt="Dębowa podłoga ułożona w jodełkę klasyczną w jasnym salonie" width="876" height="1313">
+      <figcaption class="hero__tag"><span>Jodełka klasyczna</span>Dąb Classic · olejowosk</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" aria-label="Dlaczego warto">
+  <div class="wrap trust__grid">
+    <div><strong>20+</strong><span>lat w branży podłóg</span></div>
+    <div><strong>3</strong><span>salony firmowe Jawor-Parkiet</span></div>
+    <div><strong>30 lat</strong><span>gwarancji producenta</span></div>
+    <div><strong>PL</strong><span>polski producent z Nowego Miasta Lubawskiego</span></div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how" id="jak">
+  <div class="wrap">
+    <p class="eyebrow">Jak to działa</p>
+    <h2>Trzy kroki do kosztorysu</h2>
+    <ol class="how__list">
+      <li><span class="how__n">01</span><h3>Wybierz podłogę</h3><p>Układ, gatunek drewna, klasę, format i kolor. Pokazuję tylko to, co naprawdę da się zamówić.</p></li>
+      <li><span class="how__n">02</span><h3>Podaj metraż</h3><p>Wpisz powierzchnię netto. Zapas na docinki – 10% albo 15% – doliczę sam.</p></li>
+      <li><span class="how__n">03</span><h3>Odbierz kosztorys</h3><p>Materiał, montaż, klej, grunt i VAT. Kopię wyślę na e-mail, a salon oddzwoni z terminem pomiaru.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<section class="calc" id="kalkulator" aria-labelledby="calc-title">
+  <div class="wrap">
+    <div class="calc__head">
+      <div>
+        <p class="eyebrow eyebrow--light">Konfigurator podłogi</p>
+        <h2 id="calc-title">Twoja podłoga, Twój kosztorys</h2>
+      </div>
+      <div class="progress" aria-live="polite">
+        <span class="progress__label" id="progLabel">Krok 1 z 8</span>
+        <div class="progress__bar"><i id="progBar"></i></div>
+      </div>
+    </div>
+
+    <div class="calc__body">
+      <div class="calc__panel" id="panel"><!-- steps rendered by JS --></div>
+      <aside class="summary" id="summary" aria-label="Twój wybór">
+        <p class="summary__title">Twój wybór</p>
+        <div class="summary__swatch" id="sumSwatch"></div>
+        <dl id="sumList"></dl>
+        <p class="summary__note">Cenę zobaczysz w ostatnim kroku – razem z montażem, klejem i zapasem.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="wrap why__grid">
+    <figure class="why__img"><img src="img/craft.jpg" alt="Próbki szczotkowanych desek dębowych w różnych kolorach" loading="lazy"></figure>
+    <div>
+      <p class="eyebrow">Dlaczego podłoga dwuwarstwowa</p>
+      <h2>Wygląda jak lite drewno. Pracuje stabilniej.</h2>
+      <ul class="ticks">
+        <li><b>Klejenie całopowierzchniowe</b> klejem J-P Bond Elastic 1K lub Bond 2K – cicha, stabilna podłoga.</li>
+        <li><b>Ogrzewanie podłogowe</b> wodne, do 27°C na powierzchni posadzki.</li>
+        <li><b>Bez dylatacji w progach</b> – jedna spójna podłoga przez całe mieszkanie.</li>
+        <li><b>30 lat gwarancji</b> po rejestracji w ciągu 24 miesięcy i trzech protokołach z montażu.</li>
+        <li><b>Fusion Hybrid</b> – ultramatowa powłoka 14× odporniejsza na ścieranie niż olejowosk.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="realizacje">
+  <div class="wrap">
+    <div class="gallery__head">
+      <div><p class="eyebrow">Realizacje</p><h2>Trzy układy, setki możliwości</h2></div>
+      <a href="https://www.instagram.com/pan_od_parkietow/" target="_blank" rel="noopener" class="link">Więcej na @pan_od_parkietow →</a>
+    </div>
+    <div class="gallery__grid">
+      <figure><img src="img/hero.jpg" alt="Jodełka klasyczna w salonie" loading="lazy"><figcaption>Jodełka klasyczna</figcaption></figure>
+      <figure><img src="img/chevron.jpg" alt="Jodełka francuska Chevron" loading="lazy"><figcaption>Jodełka francuska · Chevron</figcaption></figure>
+      <figure><img src="img/mijanka.jpg" alt="Deska dębowa w układzie mijanki" loading="lazy"><figcaption>Mijanka · FertigDeska</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- SALONS -->
+<section class="salons" id="salony">
+  <div class="wrap">
+    <p class="eyebrow">Salony firmowe</p>
+    <h2>Dotknij drewna, zanim zdecydujesz</h2>
+    <div class="salons__grid">
+      <article class="salon"><h3>Salon Jawor-Parkiet</h3><p class="salon__addr">Adres salonu nr 1</p><p class="muted">Pon–Pt 10–18 · Sob 10–14</p><a href="#kalkulator" class="link">Umów wizytę →</a></article>
+      <article class="salon"><h3>Salon Jawor-Parkiet</h3><p class="salon__addr">Adres salonu nr 2</p><p class="muted">Pon–Pt 10–18 · Sob 10–14</p><a href="#kalkulator" class="link">Umów wizytę →</a></article>
+      <article class="salon"><h3>Salon Jawor-Parkiet</h3><p class="salon__addr">Adres salonu nr 3</p><p class="muted">Pon–Pt 10–18 · Sob 10–14</p><a href="#kalkulator" class="link">Umów wizytę →</a></article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap faq__wrap">
+    <div><p class="eyebrow">FAQ</p><h2>Najczęstsze pytania</h2></div>
+    <div class="faq__list">
+      <details><summary>Czy cena z kalkulatora jest ostateczna?</summary><p>To wstępny kosztorys. Ostateczną cenę potwierdzamy po pomiarze i sprawdzeniu podłoża (wilgotność CM, równość).</p></details>
+      <details><summary>Dlaczego doliczacie 10% lub 15% zapasu?</summary><p>To zapas na docinki. Przy mijance wystarcza 10%, przy jodełce klasycznej i francuskiej docinek jest więcej – dlatego 15%.</p></details>
+      <details><summary>Czy podłoga nadaje się na ogrzewanie podłogowe?</summary><p>Tak – na wodne ogrzewanie podłogowe, przy temperaturze powierzchni do 27°C. Przed montażem wymagany jest 30-dniowy cykl wygrzewania jastrychu.</p></details>
+      <details><summary>Dlaczego tylko montaż klejony?</summary><p>Tego wymaga producent i warunki 30-letniej gwarancji. Klej całopowierzchniowy daje ciszę, stabilność i dobre przewodzenie ciepła.</p></details>
+      <details><summary>Lakier, olejowosk czy Fusion Hybrid?</summary><p>Lakier UV (8 warstw) – najłatwiejszy w utrzymaniu. Olejowosk – naturalny dotyk, możliwa miejscowa renowacja. Fusion Hybrid – ultramatowy wygląd surowego drewna i 14× wyższa odporność na ścieranie niż olejowosk.</p></details>
+      <details><summary>Skąd 8% VAT przy montażu?</summary><p>Obniżona stawka obowiązuje przy dostawie z montażem w budownictwie mieszkaniowym. Przy zakupie samego materiału obowiązuje 23%.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div><span class="brand__name">Pan od Parkietów</span><p class="muted">Piotr Wałkowski · Salony firmowe Jawor-Parkiet</p></div>
+    <div class="footer__links"><a href="#">Polityka prywatności</a><a href="#">Regulamin kalkulatora</a><a href="https://www.instagram.com/pan_od_parkietow/" target="_blank" rel="noopener">Instagram</a></div>
+    <p class="muted small">Wizualizacja koncepcyjna · ceny wg cennika detalicznego Jawor-Parkiet z 01.09.2026 · kolory próbek poglądowe</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" id="mobileCta"><a href="#kalkulator" class="btn btn--block">Policz swoją podłogę</a></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
