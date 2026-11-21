@@ -3,16 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><!-- DEMO: usuń przed publikacją na docelowej domenie -->
 <title>Pan od Parkietów – policz swoją podłogę</title>
 <meta name="description" content="Wstępny kosztorys podłogi drewnianej Jawor-Parkiet w 2 minuty. Materiał, montaż, klej, zapas i VAT.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#24392d">
+<!-- SITE_URL: po publikacji podmień https://panodparkietow.pl na właściwą domenę (canonical, og:url, og:image, schema) -->
+<link rel="canonical" href="https://panodparkietow.pl/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Pan od Parkietów">
+<meta property="og:title" content="Pan od Parkietów – policz swoją podłogę w 2 minuty">
+<meta property="og:description" content="Wstępny kosztorys podłogi drewnianej Jawor-Parkiet: materiał, montaż, klej, zapas i VAT. 4 salony – Poznań, Komorniki, Bydgoszcz.">
+<meta property="og:url" content="https://panodparkietow.pl/">
+<meta property="og:image" content="https://panodparkietow.pl/img/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://panodparkietow.pl/#org","name":"Studio Parkietu Piotr Wałkowski","alternateName":"Pan od Parkietów","url":"https://panodparkietow.pl/","logo":"https://panodparkietow.pl/img/og.jpg","vatID":"PL6171846758","founder":{"@type":"Person","name":"Piotr Wałkowski"},"sameAs":["https://www.instagram.com/pan_od_parkietow/"],"address":{"@type":"PostalAddress","streetAddress":"ul. Moniuszki 7","postalCode":"63-200","addressLocality":"Jarocin","addressCountry":"PL"}},
+{"@type":"HomeGoodsStore","name":"Jawor-Parkiet Salon Poznań – CH M1","parentOrganization":{"@id":"https://panodparkietow.pl/#org"},"telephone":"+48510244220","email":"jaworparkiet.poznan@gmail.com","address":{"@type":"PostalAddress","streetAddress":"ul. Szwajcarska 14","postalCode":"61-285","addressLocality":"Poznań","addressCountry":"PL"}},
+{"@type":"HomeGoodsStore","name":"Jawor-Parkiet Salon Komorniki – Galeria Top Meble","parentOrganization":{"@id":"https://panodparkietow.pl/#org"},"telephone":"+48577244220","email":"jaworparkiet.komorniki@gmail.com","address":{"@type":"PostalAddress","streetAddress":"ul. Poznańska 140","postalCode":"62-052","addressLocality":"Komorniki","addressCountry":"PL"}},
+{"@type":"HomeGoodsStore","name":"Jawor-Parkiet Salon Poznań Obornicka","parentOrganization":{"@id":"https://panodparkietow.pl/#org"},"telephone":"+48881244220","email":"obornicka.jaworparkiet@gmail.com","address":{"@type":"PostalAddress","streetAddress":"ul. Obornicka 337","postalCode":"60-689","addressLocality":"Poznań","addressCountry":"PL"}},
+{"@type":"HomeGoodsStore","name":"Jawor-Parkiet Salon Bydgoszcz","parentOrganization":{"@id":"https://panodparkietow.pl/#org"},"telephone":"+48786244220","email":"jaworparkiet.bydgoszcz@gmail.com","address":{"@type":"PostalAddress","streetAddress":"ul. Toruńska 276A","postalCode":"85-831","addressLocality":"Bydgoszcz","addressCountry":"PL"}}
+]}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%232d4a3a%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23f4eee4%22 font-family=%22Georgia%22%3EP%3C/text%3E%3C/svg%3E">
 </head>
 <body>
+<a href="#kalkulator" class="skip">Przejdź do kalkulatora</a>
 
 <header class="topbar">
   <div class="wrap topbar__in">
@@ -22,11 +42,12 @@
     </a>
     <nav class="topnav" aria-label="Nawigacja">
       <a href="#jak">Jak to działa</a>
-      <a href="#realizacje">Realizacje</a>
+      <a href="#realizacje">Inspiracje</a>
       <a href="#salony">Salony</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a href="#kalkulator" class="btn btn--sm">Policz podłogę</a>
+    <a href="tel:+48510244220" class="topcall" aria-label="Zadzwoń: 510 244 220"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span>510 244 220</span></a>
+    <a href="#kalkulator" class="btn btn--sm">Bezpłatna wycena</a>
   </div>
 </header>
 
@@ -38,16 +59,16 @@
     <div class="hero__copy">
       <p class="eyebrow">Wstępny kosztorys w 2 minuty</p>
       <h1>Policz swoją podłogę. <em>Z montażem, klejem i zapasem</em> – bez niespodzianek.</h1>
-      <p class="lead">Jestem Piotr, od ponad 20 lat zajmuję się podłogami drewnianymi i prowadzę trzy salony firmowe Jawor-Parkiet. Wybierz układ, drewno i kolor – a ja przygotuję dla Ciebie uczciwy kosztorys.</p>
+      <p class="lead">Jestem Piotr, od ponad 20 lat zajmuję się podłogami drewnianymi i prowadzę cztery salony firmowe Jawor-Parkiet. Wybierz układ, drewno i kolor – a ja przygotuję dla Ciebie uczciwy kosztorys.</p>
       <div class="hero__cta">
-        <a href="#kalkulator" class="btn">Policz swoją podłogę</a>
+        <a href="#kalkulator" class="btn">Uzyskaj bezpłatną wycenę</a>
         <a href="https://www.instagram.com/pan_od_parkietow/" target="_blank" rel="noopener" class="btn btn--ghost">Zobacz mój Instagram</a>
       </div>
       <p class="micro">Bezpłatnie · ok. 2 minuty · bez zobowiązań</p>
     </div>
     <figure class="hero__media">
-      <img src="img/hero.jpg" alt="Dębowa podłoga ułożona w jodełkę klasyczną w jasnym salonie" width="876" height="1313">
-      <figcaption class="hero__tag"><span>Jodełka klasyczna</span>Dąb Classic · olejowosk</figcaption>
+      <img src="img/piotr.webp" alt="Piotr Wałkowski – Pan od Parkietów" width="900" height="900" fetchpriority="high">
+      <figcaption class="hero__tag"><span>Piotr Wałkowski</span>Pan od Parkietów · 20+ lat w branży</figcaption>
     </figure>
   </div>
 </section>
@@ -56,7 +77,7 @@
 <section class="trust" aria-label="Dlaczego warto">
   <div class="wrap trust__grid">
     <div><strong>20+</strong><span>lat w branży podłóg</span></div>
-    <div><strong>3</strong><span>salony firmowe Jawor-Parkiet</span></div>
+    <div><strong>4</strong><span>salony firmowe Jawor-Parkiet</span></div>
     <div><strong>30 lat</strong><span>gwarancji producenta</span></div>
     <div><strong>PL</strong><span>polski producent z Nowego Miasta Lubawskiego</span></div>
   </div>
@@ -70,7 +91,7 @@
     <ol class="how__list">
       <li><span class="how__n">01</span><h3>Wybierz podłogę</h3><p>Układ, gatunek drewna, klasę, format i kolor. Pokazuję tylko to, co naprawdę da się zamówić.</p></li>
       <li><span class="how__n">02</span><h3>Podaj metraż</h3><p>Wpisz powierzchnię netto. Zapas na docinki – 10% albo 15% – doliczę sam.</p></li>
-      <li><span class="how__n">03</span><h3>Odbierz kosztorys</h3><p>Materiał, montaż, klej, grunt i VAT. Kopię wyślę na e-mail, a salon oddzwoni z terminem pomiaru.</p></li>
+      <li><span class="how__n">03</span><h3>Odbierz kosztorys</h3><p>Materiał, montaż, klej, grunt i VAT. Kosztorys trafi na Twój e-mail, a termin pomiaru zarezerwujesz od razu online.</p></li>
     </ol>
   </div>
 </section>
@@ -104,7 +125,7 @@
 <!-- WHY -->
 <section class="why">
   <div class="wrap why__grid">
-    <figure class="why__img"><img src="img/craft.jpg" alt="Próbki szczotkowanych desek dębowych w różnych kolorach" loading="lazy"></figure>
+    <figure class="why__img"><img src="img/craft.webp" alt="Próbki szczotkowanych desek dębowych w różnych kolorach" width="1200" height="800" loading="lazy" decoding="async"></figure>
     <div>
       <p class="eyebrow">Dlaczego podłoga dwuwarstwowa</p>
       <h2>Wygląda jak lite drewno. Pracuje stabilniej.</h2>
@@ -123,14 +144,15 @@
 <section class="gallery" id="realizacje">
   <div class="wrap">
     <div class="gallery__head">
-      <div><p class="eyebrow">Realizacje</p><h2>Trzy układy, setki możliwości</h2></div>
+      <div><p class="eyebrow">Inspiracje</p><h2>Trzy układy, setki możliwości</h2></div>
       <a href="https://www.instagram.com/pan_od_parkietow/" target="_blank" rel="noopener" class="link">Więcej na @pan_od_parkietow →</a>
     </div>
     <div class="gallery__grid">
-      <figure><img src="img/hero.jpg" alt="Jodełka klasyczna w salonie" loading="lazy"><figcaption>Jodełka klasyczna</figcaption></figure>
-      <figure><img src="img/chevron.jpg" alt="Jodełka francuska Chevron" loading="lazy"><figcaption>Jodełka francuska · Chevron</figcaption></figure>
-      <figure><img src="img/mijanka.jpg" alt="Deska dębowa w układzie mijanki" loading="lazy"><figcaption>Mijanka · FertigDeska</figcaption></figure>
+      <figure><img src="img/hero.webp" alt="Wizualizacja: dębowa jodełka klasyczna w jasnym salonie" width="1400" height="2100" loading="lazy" decoding="async"><figcaption>Jodełka klasyczna</figcaption></figure>
+      <figure><img src="img/chevron.webp" alt="Wizualizacja: dębowa jodełka francuska Chevron" width="1200" height="1800" loading="lazy" decoding="async"><figcaption>Jodełka francuska · Chevron</figcaption></figure>
+      <figure><img src="img/mijanka.webp" alt="Wizualizacja: szeroka deska dębowa w układzie mijanki w sypialni" width="1200" height="800" loading="lazy" decoding="async"><figcaption>Mijanka · FertigDeska</figcaption></figure>
     </div>
+    <p class="muted small gallery__note">Zdjęcia poglądowe (wizualizacje). Prawdziwe realizacje znajdziesz na <a href="https://www.instagram.com/pan_od_parkietow/" target="_blank" rel="noopener">@pan_od_parkietow</a>.</p>
   </div>
 </section>
 
@@ -139,11 +161,7 @@
   <div class="wrap">
     <p class="eyebrow">Salony firmowe</p>
     <h2>Dotknij drewna, zanim zdecydujesz</h2>
-    <div class="salons__grid">
-      <article class="salon"><h3>Salon Jawor-Parkiet</h3><p class="salon__addr">Adres salonu nr 1</p><p class="muted">Pon–Pt 10–18 · Sob 10–14</p><a href="#kalkulator" class="link">Umów wizytę →</a></article>
-      <article class="salon"><h3>Salon Jawor-Parkiet</h3><p class="salon__addr">Adres salonu nr 2</p><p class="muted">Pon–Pt 10–18 · Sob 10–14</p><a href="#kalkulator" class="link">Umów wizytę →</a></article>
-      <article class="salon"><h3>Salon Jawor-Parkiet</h3><p class="salon__addr">Adres salonu nr 3</p><p class="muted">Pon–Pt 10–18 · Sob 10–14</p><a href="#kalkulator" class="link">Umów wizytę →</a></article>
-    </div>
+    <div class="salons__grid" id="salonsGrid"><!-- JS --></div>
   </div>
 </section>
 
@@ -166,16 +184,50 @@
 
 <footer class="footer">
   <div class="wrap footer__in">
-    <div><span class="brand__name">Pan od Parkietów</span><p class="muted">Piotr Wałkowski · Salony firmowe Jawor-Parkiet</p></div>
-    <div class="footer__links"><a href="#">Polityka prywatności</a><a href="#">Regulamin kalkulatora</a><a href="https://www.instagram.com/pan_od_parkietow/" target="_blank" rel="noopener">Instagram</a></div>
-    <p class="muted small">Wizualizacja koncepcyjna · ceny wg cennika detalicznego Jawor-Parkiet z 01.09.2026 · kolory próbek poglądowe</p>
+    <div><span class="brand__name">Pan od Parkietów</span><p class="muted">Studio Parkietu Piotr Wałkowski · ul. Moniuszki 7, 63-200 Jarocin · NIP 6171846758</p></div>
+    <div class="footer__links"><a href="polityka-prywatnosci.html" target="_blank" rel="noopener">Informacja o przetwarzaniu danych</a><a href="regulamin.html" target="_blank" rel="noopener">Regulamin kalkulatora</a><a href="https://www.instagram.com/pan_od_parkietow/" target="_blank" rel="noopener">Instagram</a></div>
+    <p class="muted small">Salony firmowe Jawor-Parkiet · ceny wg cennika detalicznego Jawor-Parkiet z 01.09.2026 · kolory próbek poglądowe</p>
   </div>
 </footer>
 
-<div class="mobile-cta" id="mobileCta"><a href="#kalkulator" class="btn btn--block">Policz swoją podłogę</a></div>
+<div class="mobile-cta" id="mobileCta"><a href="tel:+48510244220" class="btn btn--ghost btn--icon" aria-label="Zadzwoń: 510 244 220"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></a><a href="#kalkulator" class="btn btn--block">Uzyskaj bezpłatną wycenę</a></div>
 <div class="toast" id="toast" role="status"></div>
 
+<dialog class="modal" id="measureDlg" aria-labelledby="mTitle">
+  <form class="modal__in" id="measureForm" novalidate>
+    <button type="button" class="modal__x" id="mClose" aria-label="Zamknij">×</button>
+    <p class="eyebrow">Kalendarz salonu</p>
+    <h3 class="step__t" id="mTitle">Umów wizytę</h3>
+    <p class="step__s">Wybierz salon, rodzaj wizyty i wolny termin. Potwierdzenie i zaproszenie do kalendarza przyjdą na Twój e-mail.</p>
+    <div class="grid2">
+      <label class="field"><span>Salon</span><select name="salon" id="mSalon"></select></label>
+      <label class="field"><span>Rodzaj wizyty</span><select name="vtype" id="mType"></select></label>
+    </div>
+    <p class="field" style="margin-top:1rem" id="mDaysL"><span>Dzień</span></p>
+    <div class="days" id="mDays" role="group" aria-labelledby="mDaysL"></div>
+    <p class="field" style="margin-top:.8rem" id="mSlotsL"><span>Godzina</span></p>
+    <div class="slots" id="mSlots" role="group" aria-labelledby="mSlotsL" aria-live="polite"></div>
+    <p class="picked" id="mPicked" aria-live="polite"></p>
+    <div class="grid2" style="margin-top:.6rem">
+      <label class="field"><span>Imię i nazwisko</span><input name="name" autocomplete="name" required maxlength="80"></label>
+      <label class="field"><span>Telefon</span><input name="phone" type="tel" autocomplete="tel" placeholder="+48 ___ ___ ___" required maxlength="20"></label>
+      <label class="field"><span>E-mail</span><input name="email" type="email" autocomplete="email" required maxlength="120"></label>
+      <label class="field"><span>Miejscowość inwestycji <small>(wymagana przy pomiarze)</small></span><input name="city" autocomplete="address-level2" maxlength="60"></label>
+      <label class="field field--full"><span>Uwagi <small>(opcjonalnie)</small></span><input name="note" maxlength="500" placeholder="np. metraż, rodzaj podłoża, ogrzewanie podłogowe"></label>
+      <input name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
+    </div>
+    <label class="check" style="margin-top:1rem"><input type="checkbox" name="agree" required><span><b>*</b> Akceptuję <a href="regulamin.html" target="_blank" rel="noopener">regulamin</a> i zapoznałem/am się z <a href="polityka-prywatnosci.html" target="_blank" rel="noopener">informacją o przetwarzaniu danych osobowych</a>. Zgadzam się na kontakt w sprawie wizyty.</span></label>
+    <div class="ts" id="tsBook"></div>
+    <p class="err" id="mErr" role="alert"></p>
+    <div class="modal__foot">
+      <a class="link" id="mCall" href="#">Wolisz zadzwonić?</a>
+      <button type="submit" class="btn" id="mSend">Zarezerwuj termin</button>
+    </div>
+  </form>
+</dialog>
+
 <script src="data.js"></script>
+<script src="pricing.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
