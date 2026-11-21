@@ -78,6 +78,7 @@ window.JP.config = {
   },
   visitTypes: [
     { id: 'salon', name: 'Wizyta w salonie', sub: 'Próbki, kolory, doradztwo · ok. 60 min' },
+    { id: 'dom', name: 'Bezpłatna wizyta u Ciebie', sub: 'do 2 wzorników w Twoim wnętrzu · ok. 60 min' },
     { id: 'pomiar', name: 'Pomiar na budowie', sub: 'Pomiar i sprawdzenie podłoża · ok. 60 min' }
   ]
 };

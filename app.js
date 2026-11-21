@@ -258,6 +258,7 @@ function renderQuote() {
     <p class="disclaimer">Kosztorys ma charakter wstępny i nie stanowi oferty w rozumieniu art. 66 Kodeksu cywilnego. Ostateczna cena i stawka VAT zależą od pomiaru, stanu podłoża, rodzaju inwestycji i dostępności towaru.</p>
     <div class="quote__cta" data-html2canvas-ignore="true">
       <button type="button" class="btn" id="measureBtn">Umów wizytę lub pomiar</button>
+      <button type="button" class="btn btn--ghost" id="homeBtn">Bezpłatna wizyta z wzornikami</button>
       <button type="button" class="btn btn--ghost" id="printBtn">Pobierz PDF</button>
     </div>
     <button type="button" class="link restart" id="restart" data-html2canvas-ignore="true">← Zmień konfigurację</button>
@@ -266,6 +267,7 @@ function renderQuote() {
   $('#progBar').style.width = '100%';
   $('#printBtn').onclick = downloadPdf;
   $('#measureBtn').onclick = () => openMeasure(c.salon);
+  $('#homeBtn').onclick = () => openMeasure(c.salon, 'dom');
   $('#restart').onclick = () => { state.step = 0; delete state.done; delete state.sendStatus; render(true); };
   bindStatus();
 }
@@ -562,11 +564,31 @@ function updBook() {
   a.href = 'tel:+48' + sl.phone; a.textContent = `Wolisz zadzwonić? ${tel(sl.phone)}`;
   $('#mPicked').textContent = bk.date && bk.time ? `Wybrany termin: ${new Date(bk.date + 'T12:00').toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' })}, godz. ${bk.time}` : '';
 }
+function sampleOptions() {
+  const opts = [];
+  if (state.done) { try { const L = quote().labels; opts.push(`Mój wybór: ${L.format} ${L.species} ${L.cls}, ${L.finish}`); } catch (e) { /* brak kosztorysu */ } }
+  D.species.forEach(sp => (D.classes[sp.id] || []).forEach(cl => opts.push(`${sp.name} ${cl.name}`)));
+  D.colors.forEach(col => opts.push(`Dąb Color Inspiration – ${col[0]}`));
+  return [...new Set(opts)];
+}
+function fillSamples() {
+  const o = sampleOptions(), cur1 = field('sample1').value, cur2 = field('sample2').value;
+  $('#mS1').innerHTML = '<option value="">Dobierzemy razem z doradcą</option>' + o.map(x => `<option${x === cur1 ? ' selected' : ''}>${esc(x)}</option>`).join('');
+  $('#mS2').innerHTML = '<option value="">— bez drugiego wzornika —</option>' + o.map(x => `<option${x === cur2 ? ' selected' : ''}>${esc(x)}</option>`).join('');
+  if (!cur1 && state.done && o[0] && o[0].startsWith('Mój wybór')) $('#mS1').value = o[0];
+}
+function syncVisitType() {
+  const t = field('vtype').value, onsite = t === 'dom' || t === 'pomiar';
+  $('#mAddrF').hidden = t !== 'dom'; $('#mSamplesF').hidden = t !== 'dom';
+  $('#mCityReq').textContent = onsite ? '(wymagana)' : '(opcjonalnie)';
+  $('#mTitle').textContent = t === 'dom' ? 'Bezpłatna wizyta Pana od Parkietów' : 'Umów wizytę';
+}
 function openMeasure(salonId, type) {
   $('#mSalon').innerHTML = D.salons.map(x => `<option value="${x.id}">${x.name}${x.place ? ' · ' + x.place : ''} · ${x.street}</option>`).join('');
   $('#mType').innerHTML = CFG.visitTypes.map(t => `<option value="${t.id}">${t.name} – ${t.sub}</option>`).join('');
   if (salonId) field('salon').value = salonId;
   if (type) field('vtype').value = type;
+  fillSamples(); syncVisitType();
   const c = state.contact;
   if (c) {
     field('name').value = field('name').value || `${c.fn} ${c.ln}`.trim();
@@ -580,7 +602,8 @@ function openMeasure(salonId, type) {
   Turnstile.mount('tsBook');
 }
 field('salon').addEventListener('change', () => { bk.time = null; loadSlots(); });
-field('vtype').addEventListener('change', () => { bk.time = null; loadSlots(); });
+field('vtype').addEventListener('change', () => { bk.time = null; syncVisitType(); loadSlots(); });
+field('sample2').addEventListener('change', () => { if (field('sample2').value && field('sample2').value === field('sample1').value) field('sample2').value = ''; });
 dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
 $('#mClose').onclick = () => dlg.close();
 mf.addEventListener('submit', e => { e.preventDefault(); book(); });
@@ -594,11 +617,13 @@ async function book() {
   if (field('name').value.trim().length < 3) bad.push(field('name'));
   if (!phoneOk(field('phone').value)) bad.push(field('phone'));
   if (!EMAIL_RE.test(field('email').value.trim())) bad.push(field('email'));
-  if (field('vtype').value === 'pomiar' && field('city').value.trim().length < 2) bad.push(field('city'));
+  const vtype = field('vtype').value;
+  if ((vtype === 'pomiar' || vtype === 'dom') && field('city').value.trim().length < 2) bad.push(field('city'));
+  if (vtype === 'dom' && field('address').value.trim().length < 3) bad.push(field('address'));
   if (!field('agree').checked) bad.push(field('agree'));
   if (bad.length) {
     bad.forEach(x => { x.setAttribute('aria-invalid', 'true'); (x.closest('.field') || x.closest('.check')).classList.add('is-bad'); });
-    err.textContent = field('vtype').value === 'pomiar' && bad.includes(field('city')) ? 'Przy pomiarze podaj miejscowość inwestycji. Uzupełnij też pozostałe zaznaczone pola.' : 'Uzupełnij zaznaczone pola i zaakceptuj regulamin (*).';
+    err.textContent = vtype === 'dom' && (bad.includes(field('city')) || bad.includes(field('address'))) ? 'Przy wizycie u Ciebie podaj miejscowość i adres. Uzupełnij też pozostałe zaznaczone pola.' : vtype === 'pomiar' && bad.includes(field('city')) ? 'Przy pomiarze podaj miejscowość inwestycji. Uzupełnij też pozostałe zaznaczone pola.' : 'Uzupełnij zaznaczone pola i zaakceptuj regulamin (*).';
     bad[0].focus(); return;
   }
   const token = Turnstile.token('tsBook');
@@ -609,8 +634,9 @@ async function book() {
     const r = await callN8n('book', {
       type: 'rezerwacja', visitType: vt.id, visitName: vt.name, date: bk.date, time: bk.time, duration: bk.duration, timezone: 'Europe/Warsaw',
       salon: { id: sl.id, name: sl.name, email: sl.email, phone: sl.phone, address: `${sl.street}, ${sl.city}` },
-      client: { name: field('name').value.trim().slice(0, 80), email: field('email').value.trim().slice(0, 120), phone: field('phone').value.trim().slice(0, 20), city: field('city').value.trim().slice(0, 60), note: field('note').value.trim().slice(0, 500) },
+      client: { name: field('name').value.trim().slice(0, 80), email: field('email').value.trim().slice(0, 120), phone: field('phone').value.trim().slice(0, 20), city: field('city').value.trim().slice(0, 60), address: vtype === 'dom' ? field('address').value.trim().slice(0, 120) : '', note: field('note').value.trim().slice(0, 500) },
       consents: { terms: true, version: CFG.consentVersion }, source: location.origin + location.pathname, utm,
+      samples: vtype === 'dom' ? [field('sample1').value, field('sample2').value].filter(Boolean).slice(0, 2) : [],
       website: field('website').value, turnstile: token,
       quote: state.done ? { number: state.no, selection: selection(), text: quoteText() } : null
     });
@@ -622,7 +648,7 @@ async function book() {
       dlg.close();
       const when = `${new Date(bk.date + 'T12:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'long' })}, godz. ${bk.time}`;
       toast(CFG.demo ? `Tryb demo: rezerwacja ${when} zasymulowana.` : `Zarezerwowano: ${vt.name.toLowerCase()} – ${when}, ${sl.name}. Potwierdzenie wysłaliśmy na e-mail.`);
-      mf.reset(); bk.date = bk.time = null;
+      mf.reset(); bk.date = bk.time = null; syncVisitType();
     }
   } catch (e) {
     err.textContent = `Nie udało się zarezerwować. Zadzwoń: ${tel(sl.phone)} lub napisz: ${sl.email}`;
@@ -640,5 +666,8 @@ if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => cta.clas
 
 if (CFG.demo) console.warn('[Pan od Parkietów] Tryb DEMO – wysyłka i kalendarz są symulowane. Przed startem ustaw JP.config.demo = false w data.js.');
 renderSalons();
+/* sekcja „Bezpłatna wizyta Pana od Parkietów” */
+$('#visitBtn').onclick = () => openMeasure(null, 'dom');
 render();
 })();
+

@@ -319,3 +319,23 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 .wood--cls{height:64px;margin-bottom:.15rem}
 .summary__swatch,.quote__vis{background-size:cover;background-position:center}
 .summary__swatch .picto,.quote__vis .picto{opacity:.85}
+
+/* wizyta domowa z wzornikami */
+.visit{background:var(--green2);color:#f4eee4;padding:clamp(4rem,8vw,7rem) 0;overflow:hidden}
+.visit__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.visit h2{color:#fbf8f2;text-wrap:balance}
+.visit__lead{margin-top:1rem;color:#dcd3c4;max-width:60ch}
+.visit__pts{list-style:none;padding:0;margin:1.2rem 0 1.6rem;display:grid;gap:.45rem}
+.visit__pts li{padding-left:1.6rem;position:relative;color:#f4eee4}
+.visit__pts li::before{content:"";position:absolute;left:0;top:.55em;width:.75rem;height:.75rem;border-radius:3px;background:var(--brass)}
+.visit__samples{position:relative;aspect-ratio:1/1;max-width:440px;width:100%;margin-inline:auto}
+.sample{position:absolute;width:62%;background:#fbf8f2;padding:.6rem .6rem 0;border-radius:6px;box-shadow:0 24px 40px rgba(0,0,0,.35)}
+.sample img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px}
+.sample figcaption{font-size:var(--t-xs);color:#2a211b;padding:.5rem .1rem .6rem;font-weight:600}
+.sample--a{left:0;top:4%;transform:rotate(-6deg)}
+.sample--b{right:0;bottom:2%;transform:rotate(5deg)}
+.btn--light{background:var(--brass);border-color:var(--brass);color:#fff} .btn--light:hover{background:#94703c}
+.samples{border:0;padding:0;margin:.4rem 0 0}
+.samples legend{font-weight:600;margin-bottom:.4rem}
+@media (max-width:760px){.visit__grid{grid-template-columns:1fr}.visit__samples{max-width:320px}}
+@media print{.visit{display:none!important}}

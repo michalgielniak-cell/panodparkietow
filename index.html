@@ -122,6 +122,27 @@
   </div>
 </section>
 
+<!-- WIZYTA DOMOWA -->
+<section class="visit" id="wizyta" aria-labelledby="visit-title">
+  <div class="wrap visit__grid">
+    <div class="visit__samples" aria-hidden="true">
+      <figure class="sample sample--a"><img src="img/drewno/dab-classic.webp" alt="" width="400" height="400" loading="lazy" decoding="async"><figcaption>Dąb Classic</figcaption></figure>
+      <figure class="sample sample--b"><img src="img/drewno/ci-luna.webp" alt="" width="400" height="400" loading="lazy" decoding="async"><figcaption>Color Inspiration Luna</figcaption></figure>
+    </div>
+    <div>
+      <p class="eyebrow eyebrow--light">Bezpłatnie i bez zobowiązań</p>
+      <h2 id="visit-title">Umów bezpłatną wizytę Pana od Parkietów i zobacz, jak wybrana przez Ciebie podłoga wygląda w Twoim wnętrzu</h2>
+      <p class="visit__lead">Przyjedziemy z wzornikami podłóg, które wybierzesz – do dwóch na jedną wizytę. Zobaczysz je w swoim świetle, przy swoich ścianach i meblach, a przy okazji odpowiemy na pytania o podłoże i montaż.</p>
+      <ul class="visit__pts">
+        <li>Maks. 2 wzorniki na spotkanie – wybierasz je przy rezerwacji</li>
+        <li>Ok. 60 minut, Poznań, Bydgoszcz i okolice</li>
+        <li>Termin z kalendarza salonu, potwierdzenie na e-mail</li>
+      </ul>
+      <button type="button" class="btn btn--light" id="visitBtn">Umów bezpłatną wizytę</button>
+    </div>
+  </div>
+</section>
+
 <!-- WHY -->
 <section class="why">
   <div class="wrap why__grid">
@@ -212,7 +233,11 @@
       <label class="field"><span>Imię i nazwisko</span><input name="name" autocomplete="name" required maxlength="80"></label>
       <label class="field"><span>Telefon</span><input name="phone" type="tel" autocomplete="tel" placeholder="+48 ___ ___ ___" required maxlength="20"></label>
       <label class="field"><span>E-mail</span><input name="email" type="email" autocomplete="email" required maxlength="120"></label>
-      <label class="field"><span>Miejscowość inwestycji <small>(wymagana przy pomiarze)</small></span><input name="city" autocomplete="address-level2" maxlength="60"></label>
+      <label class="field"><span>Miejscowość inwestycji <small id="mCityReq">(wymagana przy pomiarze)</small></span><input name="city" autocomplete="address-level2" maxlength="60"></label>
+      <label class="field field--full" id="mAddrF" hidden><span>Ulica i numer domu / mieszkania</span><input name="address" autocomplete="street-address" maxlength="120"></label>
+      <fieldset class="field field--full samples" id="mSamplesF" hidden><legend>Wzorniki do przywiezienia <small>(maks. 2)</small></legend>
+        <div class="grid2"><label class="field"><span>Wzornik 1</span><select name="sample1" id="mS1"></select></label><label class="field"><span>Wzornik 2 <small>(opcjonalnie)</small></span><select name="sample2" id="mS2"></select></label></div>
+      </fieldset>
       <label class="field field--full"><span>Uwagi <small>(opcjonalnie)</small></span><input name="note" maxlength="500" placeholder="np. metraż, rodzaj podłoża, ogrzewanie podłogowe"></label>
       <input name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
     </div>
