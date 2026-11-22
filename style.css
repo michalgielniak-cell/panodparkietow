@@ -361,23 +361,23 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 @media (max-width:760px){.ig-card{max-width:320px}}
 
 /* PDF kosztorysu – osobny układ A4 (190 mm), renderowany poza ekranem */
-.pdfhost{position:fixed;left:-10000px;top:0;width:718px;background:#fff;z-index:-1}
+.pdfhost{position:absolute;left:0;top:0;width:718px;background:#fff;z-index:-1;pointer-events:none}
 .pdfdoc{width:718px;padding:0;background:#fff;color:#2a211b;font:13px/1.45 Inter,Arial,sans-serif}
 .pdfdoc__top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:14px;border-bottom:2px solid #2a211b}
 .pdfdoc__logo{height:58px;width:auto}
 .pdfdoc__firm{display:flex;flex-direction:column;text-align:right;font-size:11.5px;color:#5d5147;line-height:1.5}
 .pdfdoc__firm b{font-size:14px;color:#2a211b}
-.pdfdoc__head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:18px 0 14px}
+.pdfdoc__head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:14px 0 10px}
 .pdfdoc__eye{margin:0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#a9824a;font-weight:700}
 .pdfdoc__head h1{margin:4px 0 0;font-size:24px;line-height:1.15}
 .pdfdoc__meta{display:flex;flex-direction:column;text-align:right;font-size:11.5px;color:#5d5147;white-space:nowrap}
 .pdfdoc__meta b{color:#2a211b}
 .pdfdoc__spec{display:flex;gap:16px;align-items:center;background:#f6f1e8;border-radius:8px;padding:12px}
-.pdfdoc__spec img,.pdfdoc__spec i{width:112px;height:112px;object-fit:cover;border-radius:6px;flex:none;display:block}
+.pdfdoc__spec img,.pdfdoc__spec i{width:100px;height:100px;object-fit:cover;border-radius:6px;flex:none;display:block}
 .pdfdoc__spec dl{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;margin:0;font-size:12.5px}
 .pdfdoc__spec dt{color:#5d5147}.pdfdoc__spec dd{margin:0;font-weight:600}
-.pdfdoc__t{width:100%;border-collapse:collapse;margin:14px 0 4px}
-.pdfdoc__t td{padding:8px 0;border-bottom:1px solid #e5dccd;vertical-align:top}
+.pdfdoc__t{width:100%;border-collapse:collapse;margin:10px 0 2px}
+.pdfdoc__t td{padding:5px 0;border-bottom:1px solid #e5dccd;vertical-align:top}
 .pdfdoc__t td:last-child{text-align:right;white-space:nowrap;font-weight:600;padding-left:16px}
 .pdfdoc__t small{display:block;color:#5d5147;font-size:11px;font-weight:400}
 .pdfdoc__t tr.sub td{font-weight:700}
@@ -391,3 +391,18 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 .pdfdoc__foot{margin-top:14px;padding-top:8px;border-top:1px solid #e5dccd;font-size:10px;color:#8a7f74;text-align:center}
 
 @media (max-width:600px){.brand__jp{height:32px}.brand{gap:.6rem}.brand__txt{padding-left:.6rem}.brand__sub{display:none}}
+/* język korzyści + CTA na kosztorysie */
+.quote__why{border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem;margin-top:1rem}
+.quote__whyh{font-weight:600;margin-bottom:.6rem}
+.quote__why ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem 1.2rem}
+.quote__why li{display:flex;flex-direction:column;gap:.15rem;font-size:var(--t-sm);padding-left:1.1rem;position:relative}
+.quote__why li::before{content:"";position:absolute;left:0;top:.45em;width:.5rem;height:.5rem;border-radius:50%;background:#a9824a}
+.quote__why li span{color:var(--ink2);font-size:var(--t-xs)}
+.quote__next{background:#2d4a3a;color:#fff;border-radius:var(--r);padding:1rem 1.2rem;margin-top:1rem;font-size:var(--t-sm)}
+.quote__next p+p{margin-top:.35rem}.quote__next a{color:#fff;font-weight:600;white-space:nowrap}
+.pdfdoc__why{margin-top:10px;border:1px solid #e3d9ca;border-radius:8px;padding:9px 12px;font-size:10.5px}
+.pdfdoc__why>b{display:block;font-size:12.5px;margin-bottom:5px}
+.pdfdoc__why ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
+.pdfdoc__why li{line-height:1.35;color:#5d5147}.pdfdoc__why li b{color:#2a211b}
+.pdfdoc__next{margin-top:10px;background:#2d4a3a;color:#fff;border-radius:8px;padding:9px 12px;font-size:11px}
+.pdfdoc__next>b{display:block;font-size:12.5px;margin-bottom:3px}.pdfdoc__next p{margin:0}

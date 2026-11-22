@@ -109,9 +109,9 @@ const card = o => `<button type="button" class="opt ${o.sel ? 'is-sel' : ''}" da
 const head = (t, s) => `<h3 class="step__t" tabindex="-1">${t}</h3>${s ? `<p class="step__s">${s}</p>` : ''}`;
 
 function stepLayout() {
-  return head('Jak chcesz ułożyć podłogę?', 'Każdy układ ma inny zapas na docinki – doliczymy go automatycznie.') +
+  return head('Jak chcesz ułożyć podłogę?', 'Każdy układ ma inny naddatek technologiczny – doliczymy go automatycznie.') +
   `<div class="opts opts--3" data-k="layout">${D.layouts.map(l => card({ v: l.id, sel: state.layout === l.id,
-    html: `<span class="opt__pic">${picto(l.id)}</span><span class="opt__n">${l.name}</span><span class="opt__d">${l.sub}</span><span class="chip">zapas ${l.waste}</span>` })).join('')}</div>`;
+    html: `<span class="opt__pic">${picto(l.id)}</span><span class="opt__n">${l.name}</span><span class="opt__d">${l.sub}</span><span class="chip">naddatek ${l.waste}</span>` })).join('')}</div>`;
 }
 function stepSpecies() {
   return head('Jaki gatunek drewna?', `Pokazuję gatunki dostępne w układzie: <b>${layoutName(state.layout)}</b>.`) +
@@ -171,14 +171,14 @@ function stepScope() {
   `<div class="opts opts--3" data-k="scope">
     ${card({ v: 'install8', sel: state.scope === 'install8', html: `<span class="opt__n">Z montażem – mieszkanie lub dom</span><span class="opt__d">Mieszkanie do 150 m² lub dom do 300 m² powierzchni użytkowej. W cenie montaż, klej i grunt.</span><span class="chip chip--ok">VAT 8%</span>` })}
     ${card({ v: 'install23', sel: state.scope === 'install23', html: `<span class="opt__n">Z montażem – lokal użytkowy</span><span class="opt__d">Biuro, sklep, lokal usługowy lub większy dom/mieszkanie. W cenie montaż, klej i grunt.</span><span class="chip">VAT 23%</span>` })}
-    ${card({ v: 'material', sel: state.scope === 'material', html: `<span class="opt__n">Sam materiał</span><span class="opt__d">Podłoga z zapasem + informacja, ile kleju i gruntu potrzebujesz.</span><span class="chip">VAT 23%</span>` })}
+    ${card({ v: 'material', sel: state.scope === 'material', html: `<span class="opt__n">Sam materiał</span><span class="opt__d">Podłoga z naddatkiem technologicznym + informacja, ile kleju i gruntu potrzebujesz.</span><span class="chip">VAT 23%</span>` })}
   </div>
   <p class="micro">Przy domach powyżej 300 m² i mieszkaniach powyżej 150 m² stawka 8% dotyczy tylko części powierzchni – dokładne rozliczenie przygotuje salon.</p>`;
 }
 function stepArea() {
   const w = Math.round(P.waste[state.layout] * 100);
   const rooms = state.rooms || [];
-  return head('Ile metrów podłogi?', `Podaj powierzchnię netto – bez zapasu. ${w}% na docinki dla układu „${layoutName(state.layout)}” doliczymy sami.`) +
+  return head('Ile metrów podłogi?', `Podaj powierzchnię netto – bez naddatku. ${w}% naddatku technologicznego dla układu „${layoutName(state.layout)}” doliczymy sami.`) +
   `<label class="field field--big"><span>Powierzchnia do ułożenia</span><span class="field__wrap"><input id="area" type="number" inputmode="decimal" min="${P.minArea}" max="${P.maxArea}" step="0.1" placeholder="np. 45" value="${esc(state.area || '')}"><b>m²</b></span></label>
   <details class="rooms" ${rooms.length ? 'open' : ''}><summary>Nie znasz metrażu? Dodaj pomieszczenia</summary>
     <div id="roomList">${rooms.map(roomRow).join('')}</div>
@@ -240,7 +240,7 @@ function renderQuote() {
     </div>
     <table class="qt">
       <tbody>
-        <tr><td>Podłoga ${f.name}<small>${fmt1(q.net)} m² + zapas ${q.wastePct}% = ${fmt1(q.matArea)} m² × ${fmt(q.unit)}/m²</small></td><td>${fmt(q.material)}</td></tr>
+        <tr><td>Podłoga ${f.name}<small>${fmt1(q.net)} m² + naddatek technologiczny ${q.wastePct}% = ${fmt1(q.matArea)} m² × ${fmt(q.unit)}/m²</small></td><td>${fmt(q.material)}</td></tr>
         ${q.inst ? `<tr><td>Montaż – ${layoutName(state.layout).toLowerCase()}<small>${fmt1(q.net)} m² × ${fmt(q.installRate)}/m²</small></td><td>${fmt(q.install)}</td></tr>
         <tr><td>Klej i grunt<small>${fmt1(q.net)} m² × ${fmt(q.glueRate)}/m²</small></td><td>${fmt(q.glue)}</td></tr>` : ''}
         <tr class="qt__sub"><td>Razem netto</td><td>${fmt(q.netSum)}</td></tr>
@@ -255,6 +255,8 @@ function renderQuote() {
       ${q.inst ? '<p class="muted small">Klej i grunt są wliczone w cenę montażu.</p>' : '<p class="muted small">Klej i grunt możesz dokupić w salonie.</p>'}
     </div>
     <div class="quote__tech"><p><b>Zanim przyjedzie ekipa</b></p><p class="small">Wilgotność jastrychu cementowego z ogrzewaniem maks. 1,8% CM, anhydrytu maks. 0,3% CM. Wymagany 30-dniowy cykl wygrzewania posadzki. Klimat we wnętrzu: 45–60% wilgotności, 18–24°C.</p></div>
+    <div class="quote__why"><p class="quote__whyh">Dlaczego podłoga Jawor-Parkiet</p><ul>${(D.benefits || []).map(b => `<li><b>${b.t}</b><span>${b.d}</span></li>`).join('')}</ul></div>
+    <div class="quote__next"><p><b>To wstępny kosztorys – zapraszamy do salonu</b></p><p>Policzyliśmy go na podstawie podanych przez Ciebie wymiarów. Ostateczną cenę doradca potwierdzi po bezpłatnym pomiarze. W salonie <b>${esc(sl.name)}</b> (${esc(sl.street)}, ${esc(sl.city)}) zobaczysz deski na żywo i dobierzesz rozwiązanie do swojego wnętrza. Wolisz porozmawiać od razu? Zadzwoń: <a href="tel:+48${sl.phone}">${tel(sl.phone)}</a>.</p></div>
     <p class="disclaimer">Kosztorys ma charakter wstępny i nie stanowi oferty w rozumieniu art. 66 Kodeksu cywilnego. Ostateczna cena i stawka VAT zależą od pomiaru, stanu podłoża, rodzaju inwestycji i dostępności towaru.</p>
     <div class="quote__cta" data-html2canvas-ignore="true">
       <button type="button" class="btn" id="measureBtn">Umów wizytę lub pomiar</button>
@@ -350,7 +352,7 @@ function bind() {
     const upd = () => {
       state.area = area.value;
       const v = +area.value, w = P.waste[state.layout];
-      $('#areaHint').textContent = v >= P.minArea && v <= P.maxArea ? `Zamówimy ${fmt1(Math.round(v * (1 + w) * 100) / 100)} m² podłogi (z zapasem ${Math.round(w * 100)}%).` : (area.value ? `Podaj wartość od ${P.minArea} do ${P.maxArea} m².` : '');
+      $('#areaHint').textContent = v >= P.minArea && v <= P.maxArea ? `Zamówimy ${fmt1(Math.round(v * (1 + w) * 100) / 100)} m² podłogi (z naddatkiem technologicznym ${Math.round(w * 100)}%).` : (area.value ? `Podaj wartość od ${P.minArea} do ${P.maxArea} m².` : '');
       next.disabled = !required[state.step](); renderSummary();
     };
     area.addEventListener('input', upd); upd();
@@ -437,7 +439,7 @@ function quoteText() {
     `Klient: ${c.fn} ${c.ln}, tel. ${c.ph}, ${c.em}`, '',
     `Układ: ${L.layout}`, `Drewno i klasa: ${L.species} ${L.cls}`, `Format: ${L.format} (${L.dims}, ${L.thickness})`,
     `Wykończenie: ${L.finish}`, `Zakres: ${L.scope}`, '',
-    `Podłoga: ${fmt1(q.net)} m² + zapas ${q.wastePct}% = ${fmt1(q.matArea)} m² × ${fmt(q.unit)}/m² = ${fmt(q.material)}`
+    `Podłoga: ${fmt1(q.net)} m² + naddatek technologiczny ${q.wastePct}% = ${fmt1(q.matArea)} m² × ${fmt(q.unit)}/m² = ${fmt(q.material)}`
   ];
   if (q.inst) lines.push(`Montaż: ${fmt1(q.net)} m² × ${fmt(q.installRate)} = ${fmt(q.install)}`, `Klej i grunt: ${fmt1(q.net)} m² × ${fmt(q.glueRate)} = ${fmt(q.glue)}`);
   lines.push(`Razem netto: ${fmt(q.netSum)}`, `VAT ${q.vatPct}%: ${fmt(q.vat)}`, `DO ZAPŁATY BRUTTO: ${fmt(q.gross)}`, '', `Salon: ${sl.name}, ${sl.street}, ${sl.city}`);
@@ -491,7 +493,7 @@ function pdfHtml() {
   <div class="pdfdoc__spec">${dec.img ? `<img src="${dec.img}" alt="">` : `<i style="background:${dec.tone}"></i>`}
     <dl><dt>Układ</dt><dd>${q.labels.layout}</dd><dt>Drewno i klasa</dt><dd>${q.labels.species} ${esc(q.labels.cls)}</dd><dt>Format</dt><dd>${f.name} · ${f.dims}</dd><dt>Wykończenie</dt><dd>${esc(q.labels.finish)}</dd><dt>Powierzchnia</dt><dd>${fmt1(q.net)} m² netto</dd></dl></div>
   <table class="pdfdoc__t"><tbody>
-    ${row(`Podłoga ${f.name}`, `${fmt1(q.net)} m² + zapas ${q.wastePct}% = ${fmt1(q.matArea)} m² × ${fmt(q.unit)}/m²`, fmt(q.material))}
+    ${row(`Podłoga ${f.name}`, `${fmt1(q.net)} m² + naddatek technologiczny ${q.wastePct}% = ${fmt1(q.matArea)} m² × ${fmt(q.unit)}/m²`, fmt(q.material))}
     ${q.inst ? row(`Montaż – ${layoutName(state.layout).toLowerCase()}`, `${fmt1(q.net)} m² × ${fmt(q.installRate)}/m²`, fmt(q.install)) + row('Klej i grunt', `${fmt1(q.net)} m² × ${fmt(q.glueRate)}/m²`, fmt(q.glue)) : ''}
     ${row('Razem netto', '', fmt(q.netSum), 'sub')}
     ${row(`VAT ${q.vatPct}%`, q.vatPct === 8 ? 'stawka obniżona – do potwierdzenia przez salon' : '', fmt(q.vat))}
@@ -500,11 +502,36 @@ function pdfHtml() {
     <div><b>Zapotrzebowanie na budowę</b><p>${q.bond}× J-P Bond Elastic 1K, wiadro 16 kg (zużycie do 1,2 kg/m²)</p><p>${q.primer}× J-P Primer Eko, opakowanie 6 kg (zużycie do 150 g/m²)</p><p class="m">${q.inst ? 'Klej i grunt są wliczone w cenę montażu.' : 'Klej i grunt możesz dokupić w salonie.'}</p></div>
     <div><b>Zanim przyjedzie ekipa</b><p>Wilgotność jastrychu cementowego z ogrzewaniem maks. 1,8% CM, anhydrytu maks. 0,3% CM. Wymagany 30-dniowy cykl wygrzewania posadzki. Klimat we wnętrzu: 45–60% wilgotności, 18–24°C.</p></div>
   </div>
+  <div class="pdfdoc__why"><b>Dlaczego podłoga Jawor-Parkiet</b><ul>${(D.benefits || []).map(b => `<li><b>${b.t}</b> – ${b.d}</li>`).join('')}</ul></div>
+  <div class="pdfdoc__next"><b>To wstępny kosztorys – zapraszamy do salonu</b><p>Ostateczną cenę doradca potwierdzi po bezpłatnym pomiarze. Odwiedź salon <b>${esc(sl.name)}</b>, ${esc(sl.street)}, ${esc(sl.city)} – zobaczysz deski na żywo i dobierzesz rozwiązanie do swojego wnętrza. Kontakt: tel. ${tel(sl.phone)}${sl.email ? ' · ' + esc(sl.email) : ''}.</p></div>
   <p class="pdfdoc__disc">Kosztorys ma charakter wstępny i nie stanowi oferty w rozumieniu art. 66 Kodeksu cywilnego. Ostateczna cena i stawka VAT zależą od pomiaru, stanu podłoża, rodzaju inwestycji i dostępności towaru.</p>
   <footer class="pdfdoc__foot">${esc(D.company.name)} · ${esc(D.company.addr)} · NIP ${esc(D.company.nip)} · salony firmowe Jawor-Parkiet</footer>
 </div>`;
 }
+/* PDF: osobna strona A4 w nowej karcie (tekst wektorowy, ostre logo i zdjęcia) → okno druku → „Zapisz jako PDF”.
+   Gdy przeglądarka zablokuje kartę – zapasowo html2pdf. */
+function pdfPage() {
+  const css = new URL('style.css?v=20261122g', location.href).href;
+  return `<!DOCTYPE html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<base href="${esc(location.href)}"><title>Kosztorys ${esc(state.no)} – Pan od Parkietów</title>
+<link rel="stylesheet" href="${css}">
+<style>@page{size:A4;margin:10mm}html,body{background:#fff!important;margin:0;padding:0}
+.pdfbar{position:sticky;top:0;z-index:2;background:#f6f1e8;border-bottom:1px solid #e3d9ca;padding:10px;text-align:center;font:600 14px Inter,Arial,sans-serif}
+.pdfbar button{font:inherit;padding:10px 20px;border:0;border-radius:999px;background:#2d4a3a;color:#fff;cursor:pointer}
+.pdfbar span{display:block;font-weight:400;font-size:12px;color:#5d5147;margin-top:4px}
+.pdfwrap{width:718px;margin:16px auto}
+@media screen and (max-width:760px){.pdfwrap{zoom:calc(100vw / 760px)}}
+@media print{.pdfbar{display:none!important}.pdfwrap{margin:0;width:auto}.pdfdoc{width:190mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style></head>
+<body><div class="pdfbar"><button type="button" onclick="window.print()">Zapisz jako PDF / drukuj</button><span>W oknie drukowania wybierz „Zapisz jako PDF”.</span></div>
+<div class="pdfwrap">${pdfHtml()}</div>
+<script>(function(){var im=[].slice.call(document.images),n=0,go=function(){setTimeout(function(){window.print()},250)};
+if(!im.length)return window.addEventListener('load',go);im.forEach(function(i){if(i.complete)n++;else i.onload=i.onerror=function(){if(++n===im.length)go()}});if(n===im.length)window.addEventListener('load',go)})();<\/script>
+</body></html>`;
+}
 async function downloadPdf() {
+  let w = null;
+  try { w = window.open('', '_blank'); } catch (e) { w = null; }
+  if (w) { w.document.open(); w.document.write(pdfPage()); w.document.close(); return; }
   const b = $('#printBtn');
   b.disabled = true; b.textContent = 'Przygotowuję PDF…';
   const host = document.createElement('div');
@@ -513,11 +540,13 @@ async function downloadPdf() {
   try {
     if (!window.html2pdf) await loadScript(CFG.pdfLib);
     await Promise.all([...host.querySelectorAll('img')].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
+    const el = host.firstElementChild;
     await window.html2pdf().set({
       margin: [10, 10, 10, 10], filename: `Kosztorys-${String(state.no).replace(/[^\w-]/g, '')}.pdf`,
-      image: { type: 'jpeg', quality: 0.95 }, html2canvas: { scale: 3, useCORS: true, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0, windowWidth: 760 },
+      image: { type: 'jpeg', quality: 0.95 },
+      html2canvas: { scale: 3, useCORS: true, backgroundColor: '#ffffff', x: 0, y: 0, scrollX: 0, scrollY: -window.scrollY, width: 718, windowWidth: 760 },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true }, pagebreak: { mode: ['avoid-all'] }
-    }).from(host.firstElementChild).save();
+    }).from(el).save();
   } catch (e) { window.print(); }
   host.remove(); b.disabled = false; b.textContent = 'Pobierz PDF';
 }

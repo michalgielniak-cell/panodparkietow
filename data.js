@@ -82,3 +82,4 @@ window.JP.config = {
     { id: 'pomiar', name: 'Pomiar na budowie', sub: 'Pomiar i sprawdzenie podłoża · ok. 60 min' }
   ]
 };
+window.JP.benefits = [{t:"Ponad 35 lat doświadczenia",d:"Wieloletnia tradycja połączona z nowoczesną technologią produkcji podłóg drewnianych."},{t:"Polska produkcja",d:"Podłogi wytwarzane na Warmii i Mazurach (Nowe Miasto Lubawskie), dostępne w całym kraju i na rynkach zagranicznych."},{t:"Rygorystyczna kontrola jakości",d:"Nadzór na każdym etapie – od selekcji surowca, przez precyzję obróbki, aż po kontrolę końcową zgodnie z europejską normą PN-EN 13489."},{t:"Długa gwarancja",d:"Aż 30 lat gwarancji na wybrane kolekcje podłóg, potwierdzające ich wieloletnią trwałość."},{t:"Wyróżnienia i certyfikaty",d:"Godło „Teraz Polska”, „Dobry Wzór 2022”, „must have” oraz certyfikat FSC®."},{t:"Uniwersalne zastosowanie",d:"Produkty przystosowane zarówno do wnętrz mieszkalnych, jak i obiektów użyteczności publicznej."}];
