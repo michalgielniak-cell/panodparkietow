@@ -53,7 +53,7 @@ window.JP = {
   /* kolory Color Inspiration: [nazwa, średni odcień, zdjęcie dekoru z jawor-parkiet.pl] */
   colors: [["Alabastro","#c2a683","img/drewno/ci-alabastro.webp"],["Alba","#ab9172","img/drewno/ci-alba.webp"],["Avorio","#b29d7d","img/drewno/ci-avorio.webp"],["Bianco","#e1d2ba","img/drewno/ci-bianco.webp"],["Caldo","#af9f90","img/drewno/ci-caldo.webp"],["Capri","#9b805d","img/drewno/ci-capri.webp"],["Como","#836b4f","img/drewno/ci-como.webp"],["Ferro","#7e705c","img/drewno/ci-ferro.webp"],["Luna","#b5a17e","img/drewno/ci-luna.webp"],["Marone","#332a22","img/drewno/ci-marone.webp"],["Nero","#584e3b","img/drewno/ci-nero.webp"],["Oro","#a47f51","img/drewno/ci-oro.webp"],["Rosolare","#695238","img/drewno/ci-rosolare.webp"],["Sole","#d3b490","img/drewno/ci-sole.webp"],["Vento","#483a2d","img/drewno/ci-vento.webp"],["Vulcano","#846c4d","img/drewno/ci-vulcano.webp"]]
 };
-window.JP.company = { name: 'Studio Parkietu Piotr Wałkowski', addr: 'ul. Moniuszki 7, 63-200 Jarocin', nip: '6171846758' };
+window.JP.company = { name: 'Studio Parkietowe Piotr Wałkowski', addr: 'ul. Moniuszki 7, 63-200 Jarocin', nip: '6171846758' };
 window.JP.salons = [
   { id: 'poznan-m1', name: 'Salon Poznań', place: 'Centrum Handlowe M1', street: 'ul. Szwajcarska 14', city: '61-285 Poznań', email: 'jaworparkiet.poznan@gmail.com', phone: '510244220' },
   { id: 'komorniki', name: 'Salon Komorniki', place: 'Galeria Top Meble', street: 'ul. Poznańska 140', city: '62-052 Komorniki', email: 'jaworparkiet.komorniki@gmail.com', phone: '577244220' },

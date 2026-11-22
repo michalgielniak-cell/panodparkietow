@@ -226,7 +226,7 @@ function renderQuote() {
   const today = new Date(), valid = new Date(today.getTime() + 14 * 864e5);
   const d = x => x.toLocaleDateString('pl-PL');
   panel.innerHTML = `<div class="quote" id="quote">
-    <div class="quote__brand"><span><b>Pan od Parkietów</b> · ${esc(D.company.name)}</span><span>${esc(sl.name)} · ${esc(sl.street)}, ${esc(sl.city)} · tel. ${tel(sl.phone)}</span></div>
+    <div class="quote__brand"><img src="img/brand/jp-logo-h120.png" alt="Jawor-Parkiet" class="quote__jp" width="183" height="40"><span><b>Pan od Parkietów</b> · ${esc(D.company.name)}</span><span>${esc(sl.name)} · ${esc(sl.street)}, ${esc(sl.city)} · tel. ${tel(sl.phone)}</span></div>
     <div class="quote__head"><div><p class="eyebrow">Wstępny kosztorys</p><h3 class="step__t" tabindex="-1">${esc(c.fn)}, oto Twoja podłoga</h3></div><div class="quote__meta"><span>Nr ${esc(state.no)}</span><span>z dnia ${d(today)}</span><span>ważny do ${d(valid)}</span></div></div>
     <div id="sendStatus" aria-live="polite" data-html2canvas-ignore="true">${statusHtml()}</div>
     <div class="quote__spec">
@@ -477,21 +477,49 @@ async function sendQuote(retry) {
   }
 }
 
-/* ---------- PDF (biblioteka ładowana dopiero na żądanie) ---------- */
-const pdfOpts = () => ({
-  margin: [10, 10, 12, 10], filename: `Kosztorys-${String(state.no).replace(/[^\w-]/g, '')}.pdf`,
-  image: { type: 'jpeg', quality: 0.92 }, html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0 },
-  jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, pagebreak: { mode: ['avoid-all', 'css'] }
-});
+/* ---------- PDF (biblioteka ładowana dopiero na żądanie) ----------
+   Osobny układ A4 (190 mm treści), renderowany poza ekranem w wysokiej rozdzielczości – zawsze 1 strona. */
+function pdfHtml() {
+  const q = quote(), f = curFormat(), c = state.contact, sl = salonOf(c.salon), dec = decorNow();
+  const today = new Date(), valid = new Date(today.getTime() + 14 * 864e5), d = x => x.toLocaleDateString('pl-PL');
+  const row = (a, s, v, cls) => `<tr class="${cls || ''}"><td>${a}${s ? `<small>${s}</small>` : ''}</td><td>${v}</td></tr>`;
+  return `<div class="pdfdoc">
+  <header class="pdfdoc__top"><img src="img/brand/jp-logo-h160.png" alt="Jawor-Parkiet" class="pdfdoc__logo">
+    <div class="pdfdoc__firm"><b>Pan od Parkietów</b><span>${esc(D.company.name)}</span><span>${esc(sl.name)} · ${esc(sl.street)}, ${esc(sl.city)}</span><span>tel. ${tel(sl.phone)} · ${esc(sl.email || '')}</span></div></header>
+  <div class="pdfdoc__head"><div><p class="pdfdoc__eye">Wstępny kosztorys</p><h1>${esc(c.fn)}, oto Twoja podłoga</h1></div>
+    <div class="pdfdoc__meta"><b>Nr ${esc(state.no)}</b><span>z dnia ${d(today)}</span><span>ważny do ${d(valid)}</span></div></div>
+  <div class="pdfdoc__spec">${dec.img ? `<img src="${dec.img}" alt="">` : `<i style="background:${dec.tone}"></i>`}
+    <dl><dt>Układ</dt><dd>${q.labels.layout}</dd><dt>Drewno i klasa</dt><dd>${q.labels.species} ${esc(q.labels.cls)}</dd><dt>Format</dt><dd>${f.name} · ${f.dims}</dd><dt>Wykończenie</dt><dd>${esc(q.labels.finish)}</dd><dt>Powierzchnia</dt><dd>${fmt1(q.net)} m² netto</dd></dl></div>
+  <table class="pdfdoc__t"><tbody>
+    ${row(`Podłoga ${f.name}`, `${fmt1(q.net)} m² + zapas ${q.wastePct}% = ${fmt1(q.matArea)} m² × ${fmt(q.unit)}/m²`, fmt(q.material))}
+    ${q.inst ? row(`Montaż – ${layoutName(state.layout).toLowerCase()}`, `${fmt1(q.net)} m² × ${fmt(q.installRate)}/m²`, fmt(q.install)) + row('Klej i grunt', `${fmt1(q.net)} m² × ${fmt(q.glueRate)}/m²`, fmt(q.glue)) : ''}
+    ${row('Razem netto', '', fmt(q.netSum), 'sub')}
+    ${row(`VAT ${q.vatPct}%`, q.vatPct === 8 ? 'stawka obniżona – do potwierdzenia przez salon' : '', fmt(q.vat))}
+  </tbody><tfoot><tr><td>Do zapłaty brutto</td><td>${fmt(q.gross)}</td></tr></tfoot></table>
+  <div class="pdfdoc__cols">
+    <div><b>Zapotrzebowanie na budowę</b><p>${q.bond}× J-P Bond Elastic 1K, wiadro 16 kg (zużycie do 1,2 kg/m²)</p><p>${q.primer}× J-P Primer Eko, opakowanie 6 kg (zużycie do 150 g/m²)</p><p class="m">${q.inst ? 'Klej i grunt są wliczone w cenę montażu.' : 'Klej i grunt możesz dokupić w salonie.'}</p></div>
+    <div><b>Zanim przyjedzie ekipa</b><p>Wilgotność jastrychu cementowego z ogrzewaniem maks. 1,8% CM, anhydrytu maks. 0,3% CM. Wymagany 30-dniowy cykl wygrzewania posadzki. Klimat we wnętrzu: 45–60% wilgotności, 18–24°C.</p></div>
+  </div>
+  <p class="pdfdoc__disc">Kosztorys ma charakter wstępny i nie stanowi oferty w rozumieniu art. 66 Kodeksu cywilnego. Ostateczna cena i stawka VAT zależą od pomiaru, stanu podłoża, rodzaju inwestycji i dostępności towaru.</p>
+  <footer class="pdfdoc__foot">${esc(D.company.name)} · ${esc(D.company.addr)} · NIP ${esc(D.company.nip)} · salony firmowe Jawor-Parkiet</footer>
+</div>`;
+}
 async function downloadPdf() {
-  const b = $('#printBtn'), el = $('#quote');
+  const b = $('#printBtn');
   b.disabled = true; b.textContent = 'Przygotowuję PDF…';
+  const host = document.createElement('div');
+  host.className = 'pdfhost'; host.setAttribute('aria-hidden', 'true'); host.innerHTML = pdfHtml();
+  document.body.appendChild(host);
   try {
     if (!window.html2pdf) await loadScript(CFG.pdfLib);
-    el.classList.add('is-pdf');
-    await window.html2pdf().set(pdfOpts()).from(el).save();
+    await Promise.all([...host.querySelectorAll('img')].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
+    await window.html2pdf().set({
+      margin: [10, 10, 10, 10], filename: `Kosztorys-${String(state.no).replace(/[^\w-]/g, '')}.pdf`,
+      image: { type: 'jpeg', quality: 0.95 }, html2canvas: { scale: 3, useCORS: true, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0, windowWidth: 760 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true }, pagebreak: { mode: ['avoid-all'] }
+    }).from(host.firstElementChild).save();
   } catch (e) { window.print(); }
-  el.classList.remove('is-pdf'); b.disabled = false; b.textContent = 'Pobierz PDF';
+  host.remove(); b.disabled = false; b.textContent = 'Pobierz PDF';
 }
 
 /* ---------- Cloudflare Turnstile (opcjonalnie) ---------- */

@@ -38,7 +38,11 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 /* topbar */
 .topbar{position:sticky;top:0;z-index:30;background:rgba(244,238,228,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .topbar__in{display:flex;align-items:center;gap:1.5rem;height:64px}
-.brand{text-decoration:none;display:flex;flex-direction:column;line-height:1.1;margin-right:auto}
+.brand{text-decoration:none;display:flex;align-items:center;gap:.85rem;line-height:1.1;margin-right:auto}
+.brand__txt{display:flex;flex-direction:column;padding-left:.85rem;border-left:1px solid var(--line, #ddd2c1)}
+.brand__jp{height:44px;width:auto;flex:none}
+.footer__jp{display:block;height:48px;width:auto;margin-bottom:.9rem;opacity:.95}
+.quote__jp{height:36px;width:auto;display:block;flex-basis:100%;max-width:max-content;margin-bottom:.2rem}
 .brand__name{font-family:var(--serif);font-size:1.15rem;font-weight:700;letter-spacing:-.02em}
 .brand__sub{font-size:var(--t-xs);color:var(--ink2)}
 .topnav{display:flex;gap:1.5rem;font-size:var(--t-sm)} .topnav a{text-decoration:none;color:var(--ink2)} .topnav a:hover{color:var(--ink)}
@@ -355,3 +359,35 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 .ig-card__go{margin-left:auto;font-weight:600;font-size:var(--t-xs);color:var(--green);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.ig-card{transition:none}}
 @media (max-width:760px){.ig-card{max-width:320px}}
+
+/* PDF kosztorysu – osobny układ A4 (190 mm), renderowany poza ekranem */
+.pdfhost{position:fixed;left:-10000px;top:0;width:718px;background:#fff;z-index:-1}
+.pdfdoc{width:718px;padding:0;background:#fff;color:#2a211b;font:13px/1.45 Inter,Arial,sans-serif}
+.pdfdoc__top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:14px;border-bottom:2px solid #2a211b}
+.pdfdoc__logo{height:58px;width:auto}
+.pdfdoc__firm{display:flex;flex-direction:column;text-align:right;font-size:11.5px;color:#5d5147;line-height:1.5}
+.pdfdoc__firm b{font-size:14px;color:#2a211b}
+.pdfdoc__head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:18px 0 14px}
+.pdfdoc__eye{margin:0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#a9824a;font-weight:700}
+.pdfdoc__head h1{margin:4px 0 0;font-size:24px;line-height:1.15}
+.pdfdoc__meta{display:flex;flex-direction:column;text-align:right;font-size:11.5px;color:#5d5147;white-space:nowrap}
+.pdfdoc__meta b{color:#2a211b}
+.pdfdoc__spec{display:flex;gap:16px;align-items:center;background:#f6f1e8;border-radius:8px;padding:12px}
+.pdfdoc__spec img,.pdfdoc__spec i{width:112px;height:112px;object-fit:cover;border-radius:6px;flex:none;display:block}
+.pdfdoc__spec dl{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;margin:0;font-size:12.5px}
+.pdfdoc__spec dt{color:#5d5147}.pdfdoc__spec dd{margin:0;font-weight:600}
+.pdfdoc__t{width:100%;border-collapse:collapse;margin:14px 0 4px}
+.pdfdoc__t td{padding:8px 0;border-bottom:1px solid #e5dccd;vertical-align:top}
+.pdfdoc__t td:last-child{text-align:right;white-space:nowrap;font-weight:600;padding-left:16px}
+.pdfdoc__t small{display:block;color:#5d5147;font-size:11px;font-weight:400}
+.pdfdoc__t tr.sub td{font-weight:700}
+.pdfdoc__t tfoot td{border:0;padding-top:12px;font-size:16px;font-weight:700}
+.pdfdoc__t tfoot td:last-child{font-size:22px;color:#2d4a3a}
+.pdfdoc__cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.pdfdoc__cols>div{background:#f6f1e8;border-radius:8px;padding:10px 12px;font-size:11.5px}
+.pdfdoc__cols b{display:block;font-size:12.5px;margin-bottom:4px}
+.pdfdoc__cols p{margin:2px 0}.pdfdoc__cols .m{color:#5d5147}
+.pdfdoc__disc{margin:12px 0 0;font-size:10.5px;color:#5d5147}
+.pdfdoc__foot{margin-top:14px;padding-top:8px;border-top:1px solid #e5dccd;font-size:10px;color:#8a7f74;text-align:center}
+
+@media (max-width:600px){.brand__jp{height:32px}.brand{gap:.6rem}.brand__txt{padding-left:.6rem}.brand__sub{display:none}}
