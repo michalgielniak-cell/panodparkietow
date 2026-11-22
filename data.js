@@ -49,7 +49,7 @@ window.JP = {
     {"id":"fpc","name":"FertigParkiet Chevron","dims":"szer. 65/70 mm · krawędź 400–420 mm","w":68,"l":470,"thick":"13 mm","layouts":["jodelka_francuska"],"price":{"dab":{"Elegance":363,"Classic":331,"Country":311},"jesion":{"Bursztyn":349}},"ci":{"ol":[340,360,392],"fh":[360,381,412]},"inc":{"dab":["V4","SZ"],"jesion":["V4","SZ"]},"note":"Fabrycznie cięte pod 45°"},
     {"id":"fdc","name":"FertigDeska Chevron","dims":"szer. 130–150 mm · krawędź 440–850 mm","w":140,"l":740,"thick":"13 mm","layouts":["jodelka_francuska"],"price":{"dab":{"Elegance":427,"Classic":375,"Country":340}},"ci":{"ol":[375,410,450],"fh":[395,430,470]},"inc":{"dab":["V4","SZ"]},"note":"Fabrycznie cięte pod 45°"}
   ],
-  surcharge: {"V4":5,"SZ":9},
+  surcharge: {"V4":8,"SZ":16},
   /* kolory Color Inspiration: [nazwa, średni odcień, zdjęcie dekoru z jawor-parkiet.pl] */
   colors: [["Alabastro","#c2a683","img/drewno/ci-alabastro.webp"],["Alba","#ab9172","img/drewno/ci-alba.webp"],["Avorio","#b29d7d","img/drewno/ci-avorio.webp"],["Bianco","#e1d2ba","img/drewno/ci-bianco.webp"],["Caldo","#af9f90","img/drewno/ci-caldo.webp"],["Capri","#9b805d","img/drewno/ci-capri.webp"],["Como","#836b4f","img/drewno/ci-como.webp"],["Ferro","#7e705c","img/drewno/ci-ferro.webp"],["Luna","#b5a17e","img/drewno/ci-luna.webp"],["Marone","#332a22","img/drewno/ci-marone.webp"],["Nero","#584e3b","img/drewno/ci-nero.webp"],["Oro","#a47f51","img/drewno/ci-oro.webp"],["Rosolare","#695238","img/drewno/ci-rosolare.webp"],["Sole","#d3b490","img/drewno/ci-sole.webp"],["Vento","#483a2d","img/drewno/ci-vento.webp"],["Vulcano","#846c4d","img/drewno/ci-vulcano.webp"]]
 };
